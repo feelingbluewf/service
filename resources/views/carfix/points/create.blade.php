@@ -130,6 +130,11 @@
                             <span class="glyphicon form-control-feedback"></span>
                         </div>
                         <div class="form-group has-feedback">
+                            <label for="color">Choose the color that this point will be displayed in the calendar</label>
+                            <input type="color" name="color" class="form-control" id="color" value="{{ old('color') }}" required>
+                            <span class="glyphicon form-control-feedback"></span>
+                        </div>
+                        <div class="form-group has-feedback">
                             Own parts
                             <label class="switch">
                                 <input type="checkbox" name='policy'>

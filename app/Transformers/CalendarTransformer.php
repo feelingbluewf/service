@@ -8,7 +8,7 @@ final class CalendarTransformer {
 		$data = '[';
 
 		foreach($models as $model) {
-			$data .= '{ "start": "' . $model->start . '", "end": "' . $model->finish . '", "title": "' . $model->service_type . ' change ' . $model->order->car->brand . ' ' . $model->order->car->model . ' ' . $model->order->car->year . '" },'; 
+			$data .= '{ "start": "' . $model->start . '", "end": "' . $model->finish . '", "title": "' . $model->service_type . ' change ' . $model->order->car->brand . ' ' . $model->order->car->model . ' ' . $model->order->car->year . '", "color": "' . $model->point->color . '" },'; 
 		}
 
 		$data .= ']';

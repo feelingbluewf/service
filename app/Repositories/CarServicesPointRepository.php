@@ -51,7 +51,7 @@ class CarServicesPointRepository extends CoreRepository {
 			'start_time' => $request['start_time'],
 			'end_time' => $request['end_time'],
 			'policy' => $policy,
-			'bank_account_number' => $request['bank_account_number']
+			'color' => $request['color']
 		]);
 	}
 

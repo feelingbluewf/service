@@ -19,7 +19,7 @@
                 <div class="card-body">
                     @forelse($points as $point)
                     <div class="card mt-4 mb-4">
-                        <div class="card-header" style="font-weight: 600;">
+                        <div class="card-header" style="font-weight: 600; background-color: {{ $point->color }}">
                             <div class="float-left">
                                 {{ $point->first()->details->name . ' - ' . $point->city}}
                             </div>
