@@ -23,6 +23,7 @@ class CreateCarServicesPointsTable extends Migration
             $table->string('start_time');
             $table->string('end_time');
             $table->string('policy');
+            $table->string('color');
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ class CarServicesPoint extends Model
 		'start_time',
 		'end_time',
 		'policy',
+		'color',
 		'created_at',
 		'updated_at'
 	];
