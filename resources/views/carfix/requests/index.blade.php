@@ -10,93 +10,93 @@
                     {{ __('Requests') }}
                 </div>
                 <div class="card-body">
-                  @forelse($requests as $request)
-                  <div id="accept{{ $request->id }}" class="modal" style="padding: 0;">
-                    <div class="card-header" style="font-weight: 600; margin: 0;">
-                        Today, {{ Carbon\Carbon::parse($request->timer)->isoFormat('h:m') }}
-                    </div>
-                    <div style="padding: 15px 30px;">
-                        <form action="{{ route('carfix.requests.store') }}" method="POST">
-                            @csrf
-                            <div class="form-group has-feedback">
-                                <label for="point">Point</label>
-                                <select name="point" id="point" class="form-control" required>
-                                    <option value="" selected disabled hidden>Choose point</option>
-                                    @forelse($points as $point)
-                                    <option value="{{ $point->id }}">{{ $point->city . ', ' . $point->address}}</option>
-                                    @empty
-                                    <option disabled>You do not have any points!</option>
-                                    @endforelse
-                                </select>
-                                <span class="glyphicon form-control-feedback"></span>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label for="price">Price</label>
-                                <input type="number" class="form-control" placeholder="Price" name="price"  required>
-                                <span class="glyphicon form-control-feedback"></span>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label for="start">Start time</label>
-                                <input type="datetime-local" class="form-control" placeholder="Choose start time" name="start" required>
-                                <span class="glyphicon form-control-feedback"></span>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label for="finish">Finish time</label>
-                                <input type="datetime-local" class="form-control" placeholder="Choose finish time" name="finish" required>
-                                <span class="glyphicon form-control-feedback"></span>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label for="service">Service type</label>
-                                <input type="text" class="form-control" value="{{ $request->service_type }}" name="service" disabled>
-                                <span class="glyphicon form-control-feedback"></span>
-                            </div>
-                            <input type="hidden" value="{{ $request->id }}" name="order_id" required>
-                            <input type="hidden" value="{{ $request->service_type }}" name="service_type" required>
-                            <button type="submit" id="submitForm" class="btn btn-success" style="margin-bottom: 10px;">Submit</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="row mb-4" style="border: 2px solid rgba(0, 0, 0, 0.125); border-radius: 0.25rem; align-items: center;">
-                    <div style="width: 100%;">
-                        <div class="card-header" style="font-weight: 600; width: 100%;">
-                            <div class="row">
-                                <div class="col">
-                                    @php
-                                    $now = Carbon\Carbon::now();
-                                    $end_at = new Carbon\Carbon($request->timer);
-                                    $remaining = $now->diffInSeconds($end_at);
-                                    if($now > $end_at) {
-                                        $remaining = 0;
-                                    }
-                                    @endphp
-                                    Today, {{ Carbon\Carbon::parse($end_at)->isoFormat('h:m') }}
-                                </div>
-                                <div class="col text-right">
-                                    <span style="color: red;">Offer</span>
-                                </div>
-                            </div>
+                    @forelse($requests as $request)
+                    <div id="accept{{ $request->id }}" class="modal" style="padding: 0;">
+                        <div class="card-header" style="font-weight: 600; margin: 0;">
+                            Today, {{ Carbon\Carbon::parse($request->timer)->isoFormat('h:m') }}
                         </div>
-                        <div class="text-left" style="padding: 15px;">
-                            <table class="table table-bordered table-hover">
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Service type:</strong></td>
-                                        <td><strong>{{ $request->service_type }}</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Model:</td>
-                                        <td>
-                                            {{ $request->car->brand . ', ' . $request->car->model . ' ' . $request->car->year }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>VIN:</td>
-                                        <td>{{ $request->car->VIN }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Additional information:</td>
-                                        <td>{{ $request->additional_info ? $request->additional_info : 'No info' }}</td>
-                                    </tr>
+                        <div style="padding: 15px 30px;">
+                            <form action="{{ route('carfix.requests.store') }}" method="POST">
+                                @csrf
+                                <div class="form-group has-feedback">
+                                    <label for="point">Point</label>
+                                    <select name="point" id="point" class="form-control" required>
+                                        <option value="" selected disabled hidden>Choose point</option>
+                                        @forelse($points as $point)
+                                        <option value="{{ $point->id }}">{{ $point->city . ', ' . $point->address}}</option>
+                                        @empty
+                                        <option disabled>You do not have any points!</option>
+                                        @endforelse
+                                    </select>
+                                    <span class="glyphicon form-control-feedback"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label for="price">Price</label>
+                                    <input type="number" class="form-control" placeholder="Price" name="price"  required>
+                                    <span class="glyphicon form-control-feedback"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label for="start">Start time</label>
+                                    <input type="datetime-local" class="form-control" placeholder="Choose start time" name="start" required>
+                                    <span class="glyphicon form-control-feedback"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label for="finish">Finish time</label>
+                                    <input type="datetime-local" class="form-control" placeholder="Choose finish time" name="finish" required>
+                                    <span class="glyphicon form-control-feedback"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label for="service">Service type</label>
+                                    <input type="text" class="form-control" value="{{ $request->service_type }}" name="service" disabled>
+                                    <span class="glyphicon form-control-feedback"></span>
+                                </div>
+                                <input type="hidden" value="{{ $request->id }}" name="order_id" required>
+                                <input type="hidden" value="{{ $request->service_type }}" name="service_type" required>
+                                <button type="submit" id="submitForm" class="btn btn-success" style="margin-bottom: 10px;">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row mb-4" style="border: 2px solid rgba(0, 0, 0, 0.125); border-radius: 0.25rem; align-items: center;">
+                        <div style="width: 100%;">
+                            <div class="card-header" style="font-weight: 600; width: 100%;">
+                                <div class="row">
+                                    <div class="col">
+                                        @php
+                                        $now = Carbon\Carbon::now();
+                                        $end_at = new Carbon\Carbon($request->timer);
+                                        $remaining = $now->diffInSeconds($end_at);
+                                        if($now > $end_at) {
+                                            $remaining = 0;
+                                        }
+                                        @endphp
+                                        Today, {{ Carbon\Carbon::parse($end_at)->isoFormat('h:m') }}
+                                    </div>
+                                    <div class="col text-right">
+                                        <span style="color: red;">Offer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-left" style="padding: 15px;">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Service type:</strong></td>
+                                            <td><strong>{{ $request->service_type }}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Model:</td>
+                                            <td>
+                                                {{ $request->car->brand . ', ' . $request->car->model . ' ' . $request->car->year }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>VIN:</td>
+                                            <td>{{ $request->car->VIN }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Additional information:</td>
+                                            <td>{{ $request->additional_info ? $request->additional_info : 'No info' }}</td>
+                                        </tr>
                                         {{-- <tr>
                                             <td><strong>Service point:</strong></td>
                                             <td>
